@@ -1,0 +1,46 @@
+body{
+  list-style: none;
+}
+
+#navigation{
+  box-shadow: 2px;
+
+}
+
+
+.dash-tag{
+  list-style: none;
+  text-align: center;
+}
+
+#profile-image{  
+  border-radius: 60px;
+  width: 100px;
+  justify-content: center;
+}
+#profile-pic{
+  border-radius: 60px;
+  width: 100px;
+}
+.profile-name{
+  font-size: 20px;
+}
+
+#dash-list{
+  width: 2px;
+}
+
+#profile-table{
+  font-size:small;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 18px;
+  
+}
+
+#profile-edit{
+  display:block;
+  border-radius: 40px;
+  padding-top: 10px;
+}
+
