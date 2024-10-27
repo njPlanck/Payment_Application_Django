@@ -1,0 +1,87 @@
+{%load static%}
+{%load humanize%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{%static 'css/dashboard.css'%}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Tangerine">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+  
+  <title>
+    {%block title%}
+    {%endblock%}
+  </title>
+</head>
+<body>
+  <nav class="navbar navbar-light shadow-sm ">
+    <div class="d-flex">
+      <a class="navbar-brand px-2 mx-5 border-0" href="#">
+        <span class="d-flex">
+          <img class="" src="{%static 'images/icon.png'%}" width="30px" height="20px" alt="">
+          <h4 class="px-2 fw-bold text-body-secondary" style="font-family:'Tangerine';color: rgb(63, 150, 121);">Diji Bank</h4>
+        </span>
+        
+      </a> 
+    </div>
+    {%if request.user.is_authenticated%}
+    <div class="mx-4 d-flex">
+      <div class="dropdown mx-3">
+        <a class="dropdown-toggle fw-bold" href="#" data-bs-toggle="dropdown" style="text-decoration: none; color: rgb(137, 132, 132);">
+          Personal Account
+        </a>
+        <ul class="dropdown-menu aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Payments</a></li>
+          <li><a class="dropdown-item" href="#">Subscriptons</a></li>
+          <li><a class="dropdown-item" href="#">Fees</a></li>
+        </ul>
+      </div>
+      <div class="dropdown mx-3">
+        <a class="dropdown-toggle fw-bold" href="#" data-bs-toggle="dropdown" style="text-decoration: none; color: rgb(137, 132, 132);">
+          Business Account
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Business Payments</a></li>
+          <li><a class="dropdown-item" href="#">Subscriptons</a></li>
+          <li><a class="dropdown-item" href="#">Fees</a></li>
+          <li><a class="dropdown-item" href="#">Expense Management</a></li>
+          <li><a class="dropdown-item" href="#">Budgeting</a></li>
+          <li><a class="dropdown-item" href="#">Invoice</a></li>
+        </ul>
+      </div> 
+      <a class="btn btn-outline-danger mx-3" href="{%url 'userauths:sign-out'%}" style="padding-bottom:2;">Sign Out</a>
+      {%else%}
+     
+
+      <div>
+          <a class="btn btn-outline-success" href="{%url 'userauths:sign-in'%}">Sign In</a>
+
+          <a class="btn btn-primary mx-3" href="{%url 'userauths:sign-up'%}">Sign Up</a>
+      </div>
+      {%endif%}
+    </div>
+ 
+  </nav>
+  {% if messages %}
+    {%for message in messages%}
+    <div>
+
+      <div  class="alert alert-{{message.tags}}">
+        <strong>{{message}}</strong>
+      </div>
+
+    </div>
+
+    {%endfor%}
+  {%endif%}
+  {%block content%}
+  {%endblock%}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

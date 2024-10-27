@@ -1,0 +1,45 @@
+{%extends 'partials/base.html'%}
+
+{%block content%}
+<div class="d-flex">
+  <div class="col-md-4">
+
+  </div>
+  <div class="col-md-4 mt-3">
+    <form  class="d-flex justify-content-center" method="POST">
+      {%csrf_token%}
+      <input type="text" id="form1" class="form-control mx-2 bg-light" name="account_number" placeholder="find accounts">
+      <button class="btn btn-dark px-3">Submit</button>
+    
+    </form>
+    
+    {%if query%}
+    
+    {%for acct in account %}
+
+    <div class="mt-2 rounded shadow-sm">
+      <div class="d-flex flex-row border-bottom rounded pb-2 pt-4 px-4">
+        <div class="" style="">
+          <img  id="profile-image" src="{{acct.user.kyc.image.url}}">
+        </div>
+        <div class="d-flex flex-column px-4">
+          <span>{{acct.user.kyc.full_name}}</span>
+          <div>{{acct.user.email}}</div>
+          <div>{{acct.account_number}}</div>
+        
+          <a href="{% url 'amount-transfer' acct.account_number%}">Choose</a>
+
+        </div>
+      </div>
+    </div>
+    
+    {%empty%}
+    <h1>No Account Found</h1>
+    {%endfor%}
+    {%endif%}
+  {%endblock%}
+  
+  </div>
+    
+
+</div>

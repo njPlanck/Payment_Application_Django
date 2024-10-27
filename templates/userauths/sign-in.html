@@ -1,0 +1,39 @@
+{%extends 'userauths/sign-up.html'%}
+
+{%load static%}
+
+{%block form%}
+<div class="col-lg-6">
+                       
+  <h1 class="px-4 mx-4 fs-500 fw-bold d-flex justify-content-center" style="font-family:'Tangerine';color: rgb(108, 108, 172);">Log In</h1>
+  <h1 class="px-4 mx-4 fs-500 d-flex justify-content-center" style="font-family:'Tangerine';color: rgb(108, 108, 172);">Welcome to fast, easy banking and much more...</h1>
+<p class="text-muted text-center mt-2" style="font-family:'Sofia';color: rgb(67, 67, 132);">Don't have an account? <a href="{%url 'userauths:sign-up'%}" class="text-primary ml-1">Sign Up</a></p>
+{%if messages %}
+  {%for message in messages %}
+    <strong>{{message}}</strong>
+  {%endfor%}
+{%endif%}
+<form method="POST" class="mx-2 mx-4">
+  {%csrf_token%}
+    <div class="row">
+      <div class="col-12 mb-3 pt-4">
+        <div class="single-input d-flex pb-3" style="font-family:'Sofia';color: rgb(159, 159, 188);">
+          <img class="mx-2" src="{%static 'images/mail.png'%}" alt="">
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="single-input d-flex pb-3" style="font-family:'Sofia';color: rgb(159, 159, 188);">
+          <img class="mx-2" src="{%static 'images/password.png'%}" alt="">
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+        </div>
+      </div>
+    </div>  
+    <button type="submit" class="btn btn-primary mb-2 mx-4">Sign In</button>
+</form>
+</div>
+</div>
+<!-- end card-body -->
+</div>
+<!-- end card -->
+<!-- end row -->
+</div>
+{%endblock%}

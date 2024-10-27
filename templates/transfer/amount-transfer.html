@@ -1,0 +1,65 @@
+{%extends 'partials/base.html'%}
+{%load humanize%}
+
+{%block content%}
+
+<form action="{%url 'amount-trans-process' account.account_number%}" method="POST">
+  {%csrf_token%}
+    <div class="mt-2 rounded shadow-sm">
+      <div class="d-flex flex-row border-bottom rounded pb-2 pt-4 px-4">
+        <div class="" style="">
+          <img  id="profile-image" src="{{account.user.kyc.image.url}}">
+        </div>
+        <div class="d-flex flex-column px-4">
+          <span>{{account.user.kyc.full_name}}</span>
+          <div>{{account.user.email}}</div>
+          <div>{{account.account_number}}</div>
+        
+          <a href="{% url 'find-account'%}">Edit</a>
+          <button type="submit">Next</button>
+
+        </div>
+      </div>
+    </div>
+
+  <span>You Send</span>
+  <input id="amount-send" onkeyup="CalculateBalance()" placeholder="{{request.user.account.account_balance|intcomma}}" type="number" name="amount-send">
+  <select>
+    <option value="1">NGN</option>
+    <option value="2">USD</option>
+    <option value="3">GBP</option>
+    <option value="4">EUR</option>
+  
+  </select>
+  <p id="new-balance"></p>
+  <p class="text-danger" id="error-div">Error</p>
+
+  <h5 class="total-to-pay"></h5>
+  <span>Payment Narration</span>
+  <input id="amount-send" onkeyup="CalculateBalance()" placeholder="description" type="text" name="description">
+
+  <script>
+    function CalculateBalance(){
+      let available_balance = "{{request.user.account.account_balance}}"
+      let new_balance = document.getElementById("new-balance")
+      let sendAmount_input = document.getElementById("amount-send")
+      let sendAmount = sendAmount_input.value
+      let errorDiv = document.getElementById("error-div")
+      let total_to_pay = document.getElementById("total-to-pay")
+
+      let errors = []
+
+      calc = available_balance-sendAmount
+      console.log(calc)
+
+      new_balance.innerHTML = `New Balance  $${calc.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")}`;
+
+      if (calc < 0){
+        new_balance.style.color = "red"
+        alert("You can only send $"+ available_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g,","))
+      }
+    }
+  </script>
+</form>
+
+{%endblock%}

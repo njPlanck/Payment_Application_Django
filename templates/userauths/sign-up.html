@@ -1,0 +1,77 @@
+{%extends 'partials/base.html'%}
+
+
+{%load static%}
+
+{%block title%}
+Sign Up
+{%endblock%}
+
+
+{%block content%}
+{% load crispy_forms_tags %}
+
+<div id="main-wrapper" class="container p-1">
+  <div class="row justify-content-center">
+      <div class="col-xl-12">
+          <div class="card border-0 py-3">
+              <div class="card-body p-0 d-flex mx-3">
+                  <div class="row no-gutters">
+                      <div class="col-lg-6 d-none d-lg-inline-block">
+                          <div class="account-block rounded-right">
+                              <div class="overlay rounded-right"></div>
+                              <div class="account-testimonial">
+                                <h1 class="px-4 mx-4 fs-500 d-flex justify-content-center" style="font-family:'Tangerine';color: rgb(108, 108, 172);">Your Sure Banker!</h1>
+                                  <img class="rounded float-start mx-2" src="{%static 'images/backimg.webp'%}">
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    {%block form%}
+                  <div class="col-lg-6">
+                       
+                          <h1 class="px-4 mx-4 fs-500 fw-bold d-flex justify-content-center" style="font-family:'Tangerine';color: rgb(108, 108, 172);">Register</h1>
+                          <h1 class="px-4 mx-4 fs-500 d-flex justify-content-center" style="font-family:'Tangerine';color: rgb(108, 108, 172);">To experience fast, easy banking and much more...</h1>
+                        <p class="text-muted text-center mt-2" style="font-family:'Sofia';color: rgb(67, 67, 132);">Already have an account? <a href="{%url 'userauths:sign-up'%}" class="text-primary ml-1";>Sign In</a></p>
+                        <form method="POST" class="mx-2 mx-4">
+                          {%csrf_token%}
+                
+                            <div class="row">
+                              <div class="col-12 mb-3">
+                                <div class="input-group d-flex pb-3" style="font-family:'Sofia';color: rgb(159, 159, 188);">
+                                  <img class="mx-2" src="{%static 'images/user-icon.png'%}" alt="">
+                                  {{form.username}}
+                                </div>
+                                <div class="input-group d-flex pb-3" style="font-family:'Sofia';color: rgb(159, 159, 188);">
+                                  <img class="mx-2" src="{%static 'images/mail.png'%}" alt="">
+                                  {{form.email}}
+                                </div>
+                                <div class="form-group d-flex pb-3" style="font-family:'Sofia';color: rgb(159, 159, 188);">
+                                  <img class="mx-2" src="{%static 'images/password.png'%}" alt="">
+                                  {{form.password1}}
+                                </div>
+                                <div class="form-group d-flex pb-3" style="font-family:'Sofia';color: rgb(159, 159, 188);">
+                                  <img class="mx-2" src="{%static 'images/password.png'%}" alt="">
+                                  {{form.password2}}
+                                </div>
+
+                              </div>
+                            </div>
+                    
+                            
+                            <button type="submit" class="btn btn-primary mb-2 mx-4">Register</button>
+                        </form>
+                </div>
+              </div>
+              <!-- end card-body -->
+          </div>
+          <!-- end card -->
+          <!-- end row -->
+      </div>
+      {%endblock%}
+      <!-- end col -->
+  </div>
+  <!-- Row -->
+</div>
+
+{%endblock%}

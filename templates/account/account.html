@@ -1,0 +1,69 @@
+{%extends 'partials/dashboard_base.html'%}
+{%block profileform%}
+<form method="POST" enctype="multipart/form-data" class="px-2 d-flex">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="col-md-6 pt-2" style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: small;">
+    <div class="d-flex shadow-sm pt-3">
+      <div class="col-sm-3 px-3 pb-2">
+        <h6 class="mb-0">Name</h6>
+      </div>
+      <div class="col-sm-6">
+        {{kyc.full_name}}
+      </div>
+    </div>
+    <div class="d-flex shadow-sm pt-3">
+      <div class="col-sm-3 px-3 pb-2">
+        <h6 class="mb-0">Email</h6>
+      </div>
+      <div class="col-sm-9">
+        {{account.user.email}}
+      </div>
+    </div>
+    <div class="d-flex shadow-sm pt-3">
+      <div class="col-sm-3 px-3 pb-2">
+        <h6 class="mb-0">Phone</h6>
+      </div>
+      <div class="col-sm-9">
+        {{kyc.mobile}}
+      </div>
+    </div>
+    <div class="d-flex shadow-sm pt-3">
+      <div class="col-sm-3 px-3 pb-2">
+        <h6 class="mb-0">Address</h6>
+      </div>
+      <div class="col-sm-9">
+        {{kyc.house_address}}
+      </div>
+    </div>
+    <div class="d-flex shadow-sm pt-3">
+      <div class="col-sm-3 px-3 pb-2">
+        <h6 class="mb-0">Birthday</h6>
+      </div>
+      <div class="col-sm-9">
+        {{kyc.date_of_birth|date:'M d, Y'}}
+      </div>
+    </div>
+    <div class="d-flex shadow-sm pt-3">
+      <div class="col-sm-3 px-3 pb-2">
+        <h6 class="mb-0">Gender</h6>
+      </div>
+      <div class="col-sm-9">
+        {{kyc.gender}}
+      </div>
+    </div>
+    <div class="d-flex shadow-sm pt-3">
+      <div class="col-sm-3 px-3 pb-2">
+        <h6 class="mb-0">Country</h6>
+      </div>
+      <div class="col-sm-9 ">
+        {{kyc.nationality}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 pt-2 px-3">
+    <img class="mt-2" style="height: 300px;width: 300px;" src="{{kyc.signature.url}}" alt="">
+  </div>
+</form>
+{%endblock%}
+

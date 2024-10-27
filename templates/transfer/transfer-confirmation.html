@@ -1,0 +1,41 @@
+
+{%extends 'partials/base.html'%}
+{%load humanize%}
+
+{%block content%}
+<h2>Confirm Receiver's Details</h2>
+<form action="{%url 'amount-trans-process' account.account_number%}" method="POST">
+  {%csrf_token%}
+    <div class="mt-2 rounded shadow-sm">
+      <div class="d-flex flex-row border-bottom rounded pb-2 pt-4 px-4">
+        <div class="" style="">
+          <img  id="profile-image" src="{{account.user.kyc.image.url}}">
+        </div>
+        <div class="d-flex flex-column px-4">
+          <span>Receiever name: {{account.user.kyc.full_name}}</span>
+          <div>Receiver's email: {{account.user.email}}</div>
+          <div>Receiver's Account Number: {{account.account_number}}</div>
+          <div>Amount Sent: {{transaction.amount}}</div>
+          <div>Transfer Fee: Free</div>
+          <div>Purpose: {{transaction.description}}</div>
+          <div>Initited on: {{transaction.date}}</div>
+          <button type="submit">Next</button>
+
+        </div>
+      </div>
+    </div>
+  
+</form>
+<div class="">
+  <h4>Confirm Transfer</h4>
+  <p>We have sent a verification code to your phone number</p>
+  <form action="javascript:void(0)">
+    <div>
+      <input minlength="4" maxlength="4" type="text">
+    </div>
+    <a href="javascript:void(0)">Don't Receive code yet?</a>
+    <button>Confirm</button>
+  </form>
+</div>
+
+{%endblock%}
